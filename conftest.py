@@ -19,8 +19,16 @@ class HttpClient:
     def post(self, path: str, payload: dict):
         return self.session.post(url=self._full_url(path), data=payload)
 
-    def get(self, path: str):
+    def get(self, path: str, payload: dict=None):
+        if payload:
+            return self.session.get(url=self._full_url(path), data=payload)
         return self.session.get(url=self._full_url(path))
+
+    def put(self, path: str, payload: dict=None):
+        if payload:
+            return self.session.put(url=self._full_url(path), data=payload)
+
+        return self.session.put(url=self._full_url(path))
 
     def _full_url(self, path: str):
         return self.base_url + path
