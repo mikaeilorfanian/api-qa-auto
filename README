@@ -13,3 +13,16 @@ To check if code follows pep8 guidelines, run
 `flake8 --exclude=venv/* --max-line-length=110`
 To automatically and uniformly format the code,
 `black . --line-length=110 -S --exclude=venv/`
+# Assumptions
+The API under test makes no assumptions about the attributes of objects like `post`. In real systems, the backend usually checks to see if the provided object has all the required attributes and my tests take this into account.
+Below are my specification of what attributes each object must have.
+For example, if I try to edit a `post` object with a payload like {'random_attr': 'blah'}, then the backend should return an error such as "400 Bad Request".
+## `post` Object Attributes
+Create `post` calls must have all these attributes:
+- title
+- body
+- userId
+Edit `post` calls must have one or more of these attributes:
+- title
+- body
+- userId
