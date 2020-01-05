@@ -22,13 +22,14 @@ class HttpClient:
     def get(self, path: str, payload: dict = None):
         if payload:
             return self.session.get(url=self._full_url(path), data=payload)
+
         return self.session.get(url=self._full_url(path))
 
-    def put(self, path: str, payload: dict = None):
-        if payload:
-            return self.session.put(url=self._full_url(path), data=payload)
+    def put(self, path: str, payload: dict):
+        return self.session.put(url=self._full_url(path), data=payload)
 
-        return self.session.put(url=self._full_url(path))
+    def patch(self, path: str, payload: dict):
+        return self.session.patch(url=self._full_url(path), data=payload)
 
     def _full_url(self, path: str):
         return self.base_url + path
@@ -37,3 +38,8 @@ class HttpClient:
 @fixture(scope='session')
 def http_client():
     return HttpClient(base_url=BASE_URL)
+
+
+@fixture
+def post_object():
+    return {'title': 'foo', 'body': 'bar', 'userId': 1}
