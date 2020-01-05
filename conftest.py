@@ -31,6 +31,9 @@ class HttpClient:
     def patch(self, path: str, payload: dict):
         return self.session.patch(url=self._full_url(path), data=payload)
 
+    def delete(self, path: str):
+        return self.session.delete(url=self._full_url(path))
+
     def _full_url(self, path: str):
         return self.base_url + path
 
