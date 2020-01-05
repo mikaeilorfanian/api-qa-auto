@@ -1,7 +1,15 @@
-# Env Setup
+# How to Use This Application
+## Setup
 This project works with Python 3.8.1., so make a Python virtual environment:
 `python3.8 -m venv venv`
 Then, activate this virtual env and install the required Python packages:
 `pip install -r requirements.txt`
 Finally, run the tests:
 `pytest`
+## Development
+In addition to the previous steps, install packages that help with developing this project:
+`pip install -r dev-requirements.txt`
+To check if code follows pep8 guidelines, run
+`flake8 --exclude=venv/* --max-line-length=110`
+To automatically and uniformly format the code,
+`black . --line-length=110 -S --exclude=venv/`
