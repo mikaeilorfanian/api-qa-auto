@@ -21,4 +21,10 @@ class TestEditPost:
 
     def test_editing_post_object_with_malformed_json_payload_fails(self, http_client):
         post_edit_resp = http_client.put('/posts/1', {'random_attr': 'title'})
+
         assert post_edit_resp.status_code in list(range(400, 500))
+
+    def test_editing_non_existing_post_fails(self, http_client, post_object):
+        post_edit_resp = http_client.put('/posts/123231', post_object)
+
+        assert post_edit_resp.status_code == 404
